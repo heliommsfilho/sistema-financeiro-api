@@ -31,7 +31,7 @@ public class SistemaFinanceiroApiExceptionHandler extends ResponseEntityExceptio
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 		String msgUsuario = messages.getMessage(Mensagens.MENSAGEM_INVALIDA.toString(), null, LocaleContextHolder.getLocale());
-		String msgDesenvolvedor = ex.getCause().toString();
+		String msgDesenvolvedor = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
 		List<Erro> erros = Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor));
 		
 		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
