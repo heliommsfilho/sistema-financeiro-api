@@ -2,7 +2,8 @@ package com.heliommsfilho.sistemafinanceiro.api;
 
 public enum Mensagens {
 
-	MENSAGEM_INVALIDA("requisicao.mensagem-invalida");
+	MENSAGEM_INVALIDA("requisicao.mensagem-invalida"),
+	NAO_ENCONTRADO("requisicao.recurso-nao-encontrado");
 	
 	private String mensagem;
 
