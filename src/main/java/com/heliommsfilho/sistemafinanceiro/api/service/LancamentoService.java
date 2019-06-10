@@ -41,5 +41,9 @@ public class LancamentoService {
 		
 		Optional<Categoria> categoria = Optional.ofNullable(categoriaRepository.findOne(lancamento.getCategoria().getCodigo()));
 		categoria.orElseThrow(CategoriaNaoExistenteException::new);
+	}
+
+	public void excluir(Long codigo) {
+		lancamentoRepository.delete(codigo);
 	}	
 }
