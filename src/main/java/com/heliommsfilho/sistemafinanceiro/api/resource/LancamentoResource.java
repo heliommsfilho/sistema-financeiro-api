@@ -1,5 +1,6 @@
 package com.heliommsfilho.sistemafinanceiro.api.resource;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.heliommsfilho.sistemafinanceiro.api.event.RecursoCriadoEvent;
 import com.heliommsfilho.sistemafinanceiro.api.model.Lancamento;
 import com.heliommsfilho.sistemafinanceiro.api.repository.LancamentoRepository;
+import com.heliommsfilho.sistemafinanceiro.api.repository.filter.LancamentoFilter;
 import com.heliommsfilho.sistemafinanceiro.api.service.LancamentoService;
 
 @RestController
@@ -47,5 +49,10 @@ public class LancamentoResource {
 		Optional<Lancamento> lancamentoSalvo = Optional.ofNullable(lancamentoRepository.findOne(codigo));
 		
 		return lancamentoSalvo.isPresent() ? ResponseEntity.ok(lancamentoSalvo.get()) : ResponseEntity.notFound().build();
+	}
+	
+	@GetMapping
+	public List<Lancamento> pesquisar(LancamentoFilter filter) {
+		return lancamentoRepository.filtrar(filter);
 	}
 }
