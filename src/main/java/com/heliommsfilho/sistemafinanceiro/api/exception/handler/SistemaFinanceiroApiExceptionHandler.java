@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -50,6 +52,14 @@ public class SistemaFinanceiroApiExceptionHandler extends ResponseEntityExceptio
 		String msgDesenvolvedor = ex.toString();
 		
 		return handleExceptionInternal(ex, Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor)), new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+	}
+	
+	@ExceptionHandler({DataIntegrityViolationException.class})
+	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
+		String msgUsuario = messages.getMessage(Mensagens.OPERACAO_NAO_PERMITIDA.toString(), null, LocaleContextHolder.getLocale());
+		String msgDesenvolvedor = ExceptionUtils.getRootCauseMessage(ex);
+		
+		return handleExceptionInternal(ex, Arrays.asList(new Erro(msgUsuario, msgDesenvolvedor)), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 	
 	private List<Erro> criarListaErros(BindingResult bindingResult) {
