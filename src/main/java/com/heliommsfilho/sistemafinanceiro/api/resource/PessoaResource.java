@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.heliommsfilho.sistemafinanceiro.api.PessoaService;
 import com.heliommsfilho.sistemafinanceiro.api.event.RecursoCriadoEvent;
 import com.heliommsfilho.sistemafinanceiro.api.model.Pessoa;
 import com.heliommsfilho.sistemafinanceiro.api.repository.PessoaRepository;
+import com.heliommsfilho.sistemafinanceiro.api.service.PessoaService;
 
 @RestController
 @RequestMapping("/pessoas")

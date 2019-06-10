@@ -1,4 +1,4 @@
-package com.heliommsfilho.sistemafinanceiro.api;
+package com.heliommsfilho.sistemafinanceiro.api.service;
 
 import java.util.Optional;
 
@@ -29,7 +29,7 @@ public class PessoaService {
 		pessoaRepository.save(pessoaSalva);
 	}
 	
-	private Pessoa buscarPorCodigo(Long codigo) {
+	public Pessoa buscarPorCodigo(Long codigo) {
 		Optional<Pessoa> pessoaSalva = Optional.ofNullable(pessoaRepository.findOne(codigo));
 		
 		return pessoaSalva.orElseThrow(() -> new EmptyResultDataAccessException(1));

@@ -4,7 +4,9 @@ public enum Mensagens {
 
 	MENSAGEM_INVALIDA("requisicao.mensagem-invalida"),
 	NAO_ENCONTRADO("requisicao.recurso-nao-encontrado"),
-	OPERACAO_NAO_PERMITIDA("requisicao.operacao-nao-permitida");
+	OPERACAO_NAO_PERMITIDA("requisicao.operacao-nao-permitida"),
+	PESSOA_INEXISTENTE("pessoa.inexistente-ou-inativa"),
+	CATEGORIA_NAO_EXISTENTE("categoria.nao-existente");
 	
 	private String mensagem;
 

@@ -75,7 +75,7 @@ public class SistemaFinanceiroApiExceptionHandler extends ResponseEntityExceptio
 		return erros;
 	}
 	
-	private static class Erro {
+	public static class Erro {
 		private String mensagemUsuario;
 		private String mensagemDesenvolvedor;
 		
