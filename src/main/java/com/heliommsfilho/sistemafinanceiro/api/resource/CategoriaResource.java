@@ -2,6 +2,7 @@ package com.heliommsfilho.sistemafinanceiro.api.resource;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,7 +43,9 @@ public class CategoriaResource {
 	}
 	
 	@GetMapping("/{codigo}")
-	public Categoria buscarPorCodigo(@PathVariable Long codigo) {
-		return categoriaRepository.findOne(codigo);
+	public ResponseEntity<Categoria> buscarPorCodigo(@PathVariable Long codigo) {
+		Optional<Categoria> categoria = Optional.ofNullable(categoriaRepository.findOne(codigo));
+		
+		return categoria.isPresent() ? ResponseEntity.ok(categoria.get()) : ResponseEntity.notFound().build();
 	}
 }
