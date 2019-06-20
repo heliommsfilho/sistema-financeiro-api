@@ -25,3 +25,4 @@ public class BasicSecurity extends WebSecurityConfigurerAdapter {
 				.and().csrf().disable();
 	}
 }
+ 
