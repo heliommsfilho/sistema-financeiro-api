@@ -24,6 +24,7 @@ import com.heliommsfilho.sistemafinanceiro.api.event.RecursoCriadoEvent;
 import com.heliommsfilho.sistemafinanceiro.api.model.Lancamento;
 import com.heliommsfilho.sistemafinanceiro.api.repository.LancamentoRepository;
 import com.heliommsfilho.sistemafinanceiro.api.repository.filter.LancamentoFilter;
+import com.heliommsfilho.sistemafinanceiro.api.repository.projection.ResumoLancamento;
 import com.heliommsfilho.sistemafinanceiro.api.service.LancamentoService;
 
 @RestController
@@ -60,6 +61,12 @@ public class LancamentoResource {
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public Page<Lancamento> pesquisar(LancamentoFilter filter, Pageable pageable) {
 		return lancamentoRepository.filtrar(filter, pageable);
+	}
+	
+	@GetMapping(params = "resumo")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public Page<ResumoLancamento> resumir(LancamentoFilter filter, Pageable pageable) {
+		return lancamentoRepository.resumir(filter, pageable);
 	}
 	
 	@DeleteMapping("/{codigo}")
