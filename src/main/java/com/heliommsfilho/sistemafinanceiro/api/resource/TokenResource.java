@@ -18,7 +18,7 @@ public class TokenResource {
 		Cookie refreshTokenCookie = new Cookie("refreshToken", null);
 		refreshTokenCookie.setHttpOnly(true);
 		refreshTokenCookie.setSecure(false);
-		refreshTokenCookie.setPath(req.getContextPath() + "/ouaht/token");
+		refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
 		refreshTokenCookie.setMaxAge(0);
 		
 		resp.addCookie(refreshTokenCookie);
